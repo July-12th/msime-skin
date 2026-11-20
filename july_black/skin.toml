@@ -1,0 +1,178 @@
+# ============================================================
+# 七月 Black —— 水杉输入法独立外部皮肤
+# ============================================================
+# 设计：白色候选栏、黑色圆角选中项、未选中候选文字纯黑。
+# 横排和竖排都使用同一套主题颜色；布局尺寸可分别调整。
+#
+# 安装：将 july_black 文件夹整体复制到水杉的外部皮肤目录。
+# 说明：base = "fluent" 指向水杉内置基底，不是杨柳青皮肤文件。
+# 字号：候选文字字号由水杉设置页中的「候选字号」控制，
+#       本皮肤主要通过留白、行高和间距调整视觉舒适度。
+#
+# 单位提示：
+#   *_dip / padding / gap 等数值通常按 DIP 或皮肤格式定义的布局单位解释。
+#   颜色使用 #RRGGBB 或 #RRGGBBAA（最后两位为透明度，若该字段支持）。
+# ============================================================
+
+# ---------- 皮肤基本信息 ----------
+schema_version = 1        # 皮肤配置格式版本；不要随意修改
+id = "july_black"         # 皮肤内部唯一 ID；修改时需确保目录/识别名一致
+name = "七月 Black 黑白"  # 设置界面显示的名称
+version = "1.0.2"         # 皮肤版本号
+author = "July"           # 作者名称
+description = "黑白高对比、圆角选中项与舒适留白的独立皮肤"
+base = "fluent"           # 水杉内置 Fluent 基底；不依赖杨柳青等外部皮肤
+
+# ---------- 支持的布局和主题 ----------
+[supports]
+layouts = ["horizontal", "vertical"]  # 支持横排和竖排
+themes = ["dark", "light"]             # 支持浅色和深色主题
+
+# ============================================================
+# 候选窗口：外框、通用间距和基础行为
+# ============================================================
+[candidate_window]
+min_width_dip = 0            # 候选窗最小宽度；0 表示不额外限制
+corner_radius_dip = 12       # 候选窗外框圆角；数值越大越圆
+border_width_dip = 1         # 外框线宽；0 可尝试关闭边框
+item_corner_radius_dip = 9   # 单个候选项的圆角
+shadow = "soft"              # 阴影样式
+backdrop = "none"            # 背景材质；none 表示不使用云母/亚克力
+font_family = "Segoe UI"     # 字体族；可替换为系统中已安装的字体
+page_arrows = false          # 是否显示翻页箭头
+page_arrow_style = "chevron" # 翻页箭头样式
+fit_content = false          # 是否按内容自动收缩窗口
+expand_panel = false         # 是否展开候选面板
+
+# 通用留白与候选项尺寸
+padding = 7                  # 候选窗内部边缘留白；增大可让内容离边框更远
+item_gap = 5                 # 候选项之间的基础间距
+item_extra_height = 7        # 候选项额外高度；增大可增加上下呼吸感
+number_inset = 10            # 序号区域内缩量
+number_gap = 7               # 序号与候选文字之间的距离
+number_scale = 0.86          # 序号相对大小；小于 1 表示比候选文字小
+item_padding_right = 12      # 候选项右侧内边距
+item_min_width = 0           # 候选项最小宽度；0 表示不额外限制
+selected_bar_width = 0        # 选中标记条宽度；0 表示不使用侧边标记条
+selected_bar_height_em = 0   # 选中标记条高度；0 表示不使用
+selected_bar_inside = false  # 选中标记条是否放在候选项内部
+item_corners_follow_card = false # 候选项圆角是否跟随外框
+justify_rows = false         # 是否将行内容两端对齐
+trim_hidden_preedit_gap = true # 隐藏预编辑内容后是否收紧空隙
+preedit_margin_dip = [2, 4, 3, 4] # 预编辑区边距，顺序按皮肤格式定义
+
+# ============================================================
+# 横排专用布局
+# ============================================================
+[candidate_window.horizontal]
+padding = 7             # 横排候选窗内边距；调大则整体更宽松
+item_gap = 7             # 横向候选项之间的距离
+item_extra_height = 7   # 横排候选项额外高度
+number_inset = 10        # 序号区域内缩量
+number_gap = 7           # 序号与文字间距
+item_padding_right = 12 # 每个候选项右侧留白
+
+# ============================================================
+# 竖排专用布局
+# ============================================================
+[candidate_window.vertical]
+padding = 8              # 竖排候选窗内边距
+item_gap = 5              # 上下候选项之间的距离
+item_extra_height = 6     # 每行额外高度；调大可增加行间舒适度
+number_inset = 10         # 序号区域内缩量
+number_gap = 8            # 序号与候选文字间距
+item_padding_right = 14   # 每行右侧留白
+min_width_dip = 220       # 竖排候选窗最小宽度
+
+# ============================================================
+# 浅色主题：参考图配色
+# 未选中候选、序号、翻译等文字均为纯黑 #000000。
+# 选中项为黑底白字。
+# ============================================================
+[candidate.light]
+accent = "#202020"                  # 强调色
+selected = "#202020"                # 选中项背景色：黑色
+hover = "#EEEEEE"                   # 鼠标悬停背景色
+surface = "#FFFFFF"                 # 候选窗背景：白色
+border = "#DADADA"                  # 候选窗边框
+text = "#000000"                    # 默认文字：纯黑
+number = "#000000"                  # 默认序号：纯黑
+translation = "#000000"             # 默认翻译文字：纯黑
+show_selected_bar = false           # 是否显示选中项侧边标记
+candidate_text = "#000000"          # 未选中候选文字：纯黑
+preedit_text = "#000000"            # 预编辑文字：纯黑
+preedit_caret = "#202020"           # 预编辑光标颜色
+selected_text = "#FFFFFF"           # 选中候选文字：白色
+selected_number = "#FFFFFF"         # 选中项序号：白色
+selected_translation = "#EAEAEA"    # 选中项翻译文字：近白色
+selected_bar = "#202020"            # 选中标记条颜色（启用时生效）
+preedit_background = "#F5F5F5"      # 预编辑区域背景
+preedit_divider = "#E5E5E5"         # 预编辑区域分隔线
+page_arrow_divider = "#DADADA"      # 翻页箭头分隔线
+translation_pos = "#000000"         # 翻译词性文字：纯黑
+translation_separator = "#000000"   # 翻译分隔符：纯黑
+selected_translation_pos = "#EAEAEA" # 选中项词性文字
+selected_translation_separator = "#D0D0D0" # 选中项翻译分隔符
+
+[candidate.light.menu]
+background = "#FFFFFF"  # 浅色主题菜单背景
+border = "#DADADA"      # 菜单边框
+text = "#000000"        # 菜单文字：纯黑
+hover = "#EEEEEE"       # 菜单项悬停背景
+
+# ============================================================
+# 深色主题：深色背景、浅色文字；选中项反转为白底黑字
+# ============================================================
+[candidate.dark]
+accent = "#FFFFFF"                  # 强调色
+selected = "#F2F2F2"                # 选中项背景：近白色
+hover = "#383838"                   # 鼠标悬停背景
+surface = "#202020"                 # 候选窗背景：深灰近黑
+border = "#484848"                  # 候选窗边框
+text = "#F2F2F2"                    # 默认文字
+number = "#B8B8B8"                  # 默认序号
+translation = "#C8C8C8"             # 默认翻译文字
+show_selected_bar = false           # 是否显示选中项侧边标记
+candidate_text = "#F2F2F2"          # 未选中候选文字
+preedit_text = "#D0D0D0"            # 预编辑文字
+preedit_caret = "#FFFFFF"           # 预编辑光标颜色
+selected_text = "#171717"           # 选中候选文字：深色
+selected_number = "#333333"         # 选中项序号
+selected_translation = "#333333"    # 选中项翻译文字
+selected_bar = "#FFFFFF"            # 选中标记条颜色（启用时生效）
+preedit_background = "#FFFFFF10"    # 预编辑区域背景（含透明度写法）
+preedit_divider = "#555555"         # 预编辑区域分隔线
+page_arrow_divider = "#555555"      # 翻页箭头分隔线
+translation_pos = "#C8C8C8"         # 翻译词性文字
+translation_separator = "#A0A0A0"   # 翻译分隔符
+selected_translation_pos = "#333333" # 选中项词性文字
+selected_translation_separator = "#555555" # 选中项翻译分隔符
+
+[candidate.dark.menu]
+background = "#292929"  # 深色主题菜单背景
+border = "#4A4A4A"      # 菜单边框
+text = "#F2F2F2"        # 菜单文字
+hover = "#3A3A3A"       # 菜单项悬停背景
+
+# ============================================================
+# 悬浮工具栏
+# ============================================================
+[toolbar]
+corner_radius_dip = 10      # 工具栏外框圆角
+icon_corner_radius_dip = 6  # 工具栏图标按钮圆角
+
+[toolbar.light]
+background = "#FFFFFF"  # 浅色工具栏背景
+border = "#DADADA"      # 浅色工具栏边框
+handle = "#333333"      # 拖动手柄颜色
+divider = "#E5E5E5"     # 工具栏分隔线
+icon = "#222222"        # 图标颜色
+hover = "#EEEEEE"       # 图标按钮悬停背景
+
+[toolbar.dark]
+background = "#202020"  # 深色工具栏背景
+border = "#484848"      # 深色工具栏边框
+handle = "#FFFFFF"      # 拖动手柄颜色
+divider = "#484848"     # 工具栏分隔线
+icon = "#F2F2F2"        # 图标颜色
+hover = "#383838"       # 图标按钮悬停背景
